@@ -5,26 +5,17 @@ using Random = UnityEngine.Random;
 
 public class MainScript : MonoBehaviour
 {
-    public static GameObject Ball;
-    public static GameObject Platform;
-    private Collider _ballCollider, _colliderPlatform;
-    private GameObject[] _bricks;
-    public List<Collider> _collidersBricks ;
+    public static GameObject Ball,Platform;
+    [HideInInspector] public List<GameObject> bricks;
     public static int SpeedX = 4;
-    bool _canChange = true;
+    private float d = 0.8f;
+    bool _collisionX = false,_collisionY = false;
 
     private void Start()
     {
-        _colliderPlatform = GameObject.FindWithTag("Platform").GetComponent<Collider>();
-        _bricks = GameObject.FindGameObjectsWithTag("Brick");
-        Ball = transform.gameObject;
-        Platform = _colliderPlatform.gameObject;
-        _ballCollider = GetComponent<Collider>();
-
-        for (int i = 0; i < _bricks.Length; i++)
-        {
-            _collidersBricks.Add(_bricks[i].GetComponent<Collider>());
-        }
+        Platform = GameObject.FindWithTag("Platform");
+        bricks = new List<GameObject>(GameObject.FindGameObjectsWithTag("Brick"));
+        Ball = this.gameObject;
     }
 
     private void FixedUpdate()
@@ -41,40 +32,42 @@ public class MainScript : MonoBehaviour
 
     private void CheckForTouchBricks()
     {
-        if (!_canChange) return;
-        for (int i = 0; i < _collidersBricks.Count; i++)
+        for (int i = 0; i < bricks.Count; i++)
         {
-            if (_collidersBricks[i].bounds.Intersects(_ballCollider.bounds))
+            if (CheckCollision(this.gameObject.transform, bricks[i]))
             {
                 Direction();
-                var platform = _collidersBricks[i].GetComponent<Platform>();
+                var platform = bricks[i].GetComponent<Platform>();
                 platform.health -= 1;
                 if (platform.health == 0)
-                    _collidersBricks.Remove(_collidersBricks[i]);
-                _canChange = false;
+                    bricks.Remove(bricks[i]);
             }
-            else
-                Invoke(nameof(Invoke), 0.1f);
         }
+    }
+
+    private bool CheckCollision(Transform one, GameObject two)
+    {
+
+        _collisionX = one.position.x + d >= two.transform.position.x &&
+                     two.transform.position.x + d >= one.position.x;
+        _collisionY = one.position.y + d >= two.transform.position.y &&
+                     two.transform.position.y + d >= one.position.y;
+
+        return _collisionX && _collisionY;
     }
 
     private void CheckForTouchPlatform()
     {
-        if (!_canChange) return;
-        if (_colliderPlatform.bounds.Intersects(_ballCollider.bounds))
+        if (CheckCollision(this.gameObject.transform, Platform))
         {
             Direction();
-            _canChange = false;
         }
-        else
-            Invoke(nameof(Invoke), 0.1f);
     }
 
-
-
+    
     private void MoveBall()
     {
-        _ballCollider.transform.Translate(SpeedX * Time.fixedDeltaTime, 0, 0);
+        gameObject.transform.Translate(SpeedX * Time.fixedDeltaTime, 0, 0);
     }
 
     private void Direction()
@@ -87,11 +80,6 @@ public class MainScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, Random.Range(120, 150));
         else if (transform.eulerAngles.z < 150 && 120 < transform.eulerAngles.z)
             transform.rotation = Quaternion.Euler(0, 0, Random.Range(30, 60));
-    }
-
-    private void Invoke()
-    {
-        _canChange = true;
     }
 
     private void CheckPosition()

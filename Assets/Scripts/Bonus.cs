@@ -5,23 +5,20 @@ using Random = UnityEngine.Random;
 
 public class Bonus : MonoBehaviour
 {
-    private Collider _platformCollider;
+    private float d = 0.5f;
+    private bool _isAdding = true;
         
     private int[] speed = new[] {-2, 2};
     public enum BonusEnum
     {
-        speed,
-        ball,
-        platform,
-        none
+        Speed,
+        Ball,
+        Platform,
+        None
     }
 
     public BonusEnum brickBonus;
-
-    private void Start()
-    {
-        _platformCollider = GameObject.FindWithTag("Platform").GetComponent<Collider>();
-    }
+    
 
     private void FixedUpdate()
     {
@@ -35,28 +32,40 @@ public class Bonus : MonoBehaviour
 
     private void CheckForTouchBall()
     {
-        if (transform.GetComponent<Collider>().bounds.Intersects(_platformCollider.bounds))
+        if (CheckCollision(this.gameObject.transform,MainScript.Ball.transform) && _isAdding)
         {
             BonusIs();
+            Debug.Log("Ok");
         }
     }
         
     private void BonusIs()
     {
+        _isAdding = false;
         switch (brickBonus)
         {
-            case BonusEnum.ball:
+            case BonusEnum.Ball:
                 AddBall();
                 break;
-            case BonusEnum.platform :
+            case BonusEnum.Platform :
                 PlatformChangeScale();
                 break;
-            case BonusEnum.speed :
+            case BonusEnum.Speed :
                 AddSpeed();
                 break;
-            case BonusEnum.none :
+            case BonusEnum.None :
+                Destroy(this.gameObject);
                 break;
         }
+    }
+    
+    private bool CheckCollision(Transform one, Transform two)
+    {
+        bool collisionX = one.position.x +d >= two.position.x &&
+                          two.position.x +d >= one.position.x;
+        bool collisionY= one.position.y +d >= two.position.y &&
+                         two.position.y +d >= one.position.y;
+        return collisionX && collisionY;
     }
 
     private void MoveBonus()
@@ -69,6 +78,7 @@ public class Bonus : MonoBehaviour
         MainScript.SpeedX += speed[Random.Range(0, speed.Length)];
         yield return new WaitForSeconds(4f);
         MainScript.SpeedX = 4;
+        Destroy(this.gameObject);
     }
         
     IEnumerator PlatformChangeScale()
@@ -76,6 +86,7 @@ public class Bonus : MonoBehaviour
         MainScript.Platform.transform.localScale = new Vector3(30,5.683837f,0);
         yield return new WaitForSeconds(4f);
         MainScript.Platform.transform.localScale = new Vector3(23.69707f,5.683837f,0);
+        Destroy(this.gameObject);
     }
         
     IEnumerator AddBall()
@@ -84,5 +95,6 @@ public class Bonus : MonoBehaviour
         yield return new WaitForSeconds(4f);
         b.AddComponent<MainScript>();
         Destroy(b.gameObject);
+        Destroy(this.gameObject);
     }
 }

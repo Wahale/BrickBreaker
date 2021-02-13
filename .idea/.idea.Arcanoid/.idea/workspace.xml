@@ -7,25 +7,31 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FA2C88AE-484C-4CEA-86C7-CAFC0ADAA6F0/87/bb9e590e/Transform.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FA2C88AE-484C-4CEA-86C7-CAFC0ADAA6F0/ee/b99f5caf/Vector2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../heal-td/Assets/Scripts/MoveCamera.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../Game/New/Assets/Scripts/CameraMove.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/FA2C88AE-484C-4CEA-86C7-CAFC0ADAA6F0/f3/b08f3145/Vector3.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Assets/Scripts/Balls.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Test.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlatformMove.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Platform.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Test.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Levels.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Platform.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bonus.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainScript.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1oNYJAMIDG3yjKUFNNfbDKsxaZG" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -66,6 +72,7 @@
       <updated>1613128474762</updated>
       <workItem from="1613128488315" duration="547000" />
       <workItem from="1613130015025" duration="27966000" />
+      <workItem from="1613223590238" duration="5615000" />
     </task>
     <servers />
   </component>

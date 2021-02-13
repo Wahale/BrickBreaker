@@ -12,14 +12,11 @@ public class Platform : MonoBehaviour
     {
         if (health == 0)
         {
-            // if (Random.Range(0, 1) == 1)
-            // {
             if (bonus != null)
             {
                 var obj = Instantiate(bonus, transform.position, Quaternion.identity);
                 var b = (Bonus.BonusEnum) Random.Range(0, 5);
                 obj.GetComponent<Bonus>().brickBonus = b;
-                //}
             }
 
             Destroy(this.gameObject);

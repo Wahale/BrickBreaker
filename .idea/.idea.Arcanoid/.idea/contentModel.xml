@@ -13,6 +13,7 @@
           <e p="MainScript.cs" t="Include" />
           <e p="Platform.cs" t="Include" />
           <e p="PlatformMove.cs" t="Include" />
+          <e p="Test.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

@@ -12,7 +12,7 @@ public class Levels : MonoBehaviour
 
     private void OpenPanel()
     {
-        if(ball == null || ball.GetComponent<MainScript>()._collidersBricks == null)
+        if(ball == null || ball.GetComponent<MainScript>().bricks == null)
             panel.SetActive(true);
     }
 
